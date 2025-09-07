@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddit Bot Config</title>
+    <script src="https://kit.fontawesome.com/1ad022fbba.js" crossorigin="anonymous"></script>
+    <link ref="stylesheet" href="./src/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700;800;900' 
+    <script src="./src/script.js">
+</head>
+<body>
+    <div class="modal-ctr">
+    <button id="modalBtn">Instructions</button></div>
+        <div id="modal-div"></div><!-- The Modal -->
+<div id="myModal" class="modal">
+<!-- Modal content -->
+<div class="modal-content">
+    <div class="modal-header">
+<span class="close">&times;</span>
+<h2>How to Create an App in Reddit</h2>
+    </div>
+    <div class="modal-body">
+<ol>
+        <li>Go to <a href="https://devvit.com" target="_blank">https://devvit.com</a></li>
+        <li>Log in or Sign Up if you don't have an account</li>
+        <li>Go to <a href="https://reddit.com/prefs/apps" target="_blank">https://reddit.com/prefs/apps</a></li>
+        <li>Click 'Create another app'</li>
+        <li>Enter app name</li>
+        <li>Select 'Script'</li>
+        <li>Enter description</li>
+        <li>For 'redirect uri', enter 'https://localhost:8080'</li>
+        <li>Check the box for 'I'm not a robot'</li>
+        <li>Get the Client ID which is underneath the app name in the upper left-hand corner labeled 'personal use script'</li>
+        <li>Get the secret from the form (first field on left)</li>
+</ol>
+    </div>
+    <div class="modal-footer">
+<h2>&nbsp;</h2>
+    </div>
+</div>
+</div>
+</div>
+<div class="container">
+    <h1>Reddit Bot<br>Code Generator</h1>
+    <form id="botForm">
+<legend><span class="number">1</span> User Credentials</legend>
+<label>Username</label>
+<input type="text" name="username" required placeholder="Reddit Username">
+
+<label>Password</label>
+<input type="password" name="password" required placeholder="Reddit Password" id="myInput"><i id="icon" class="fa" onclick="showPassword()">&#xf070;</i>
+        
+<legend><span class="number">2</span> Agent Information </legend>
+<label>User Agent</label>
+<input type="text" name="userAgent" required placeholder="User Agent">
+
+<label>Client ID</label>
+<input type="text" name="clientId" required placeholder="Client ID">
+
+<label>Secret</label>
+<input type="text" name="secret" required placeholder="Secret">
+
+<label>Subreddits <span class="subtext">(comma separated)</span></label>
+<input type="text" name="subreddits" required placeholder="news,pics,funny">
+
+<label>Keywords <span class="subtext">(comma separated)</span></label>
+<input type="text" name="keywords" required placeholder="keyword1,keyword2">
+
+<label>Content</label>
+<textarea name="content" rows="4" required placeholder="Enter text exactly as you want it to appear on-screen"></textarea>
+
+<button type="button" id="submitBtn">Submit</button>
+    </form>
+<code>
+    <pre id="codeBlock"></pre>
+</code>
+</div>
+            </body>
+            </html>
+
+
+
