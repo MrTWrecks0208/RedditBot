@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reddit Bot Config</title>
     <script src="https://kit.fontawesome.com/1ad022fbba.js" crossorigin="anonymous"></script>
+    <link ref="stylesheet" href="./style.css">
   <style>
     body {
       background: #f7f7f7;
@@ -169,8 +170,18 @@ label.light {
   margin-left: -30px;
   margin-top: 13px;
   font-size: 20px;
+  cursor: pointer;
 }
 
+#icon:hover {
+color: orangered;
+}
+
+#icon:active {
+filter: brightness(.8);
+transform: scale(.85);
+}
+      
 .number {
   background-color: orangered;
   color: #fff;
@@ -405,7 +416,8 @@ a:hover {
 <input type="text" name="username" required placeholder="Reddit Username">
 
 <label>Password</label>
-<input type="password" name="password" required placeholder="Reddit Password">
+<input type="password" name="password" required placeholder="Reddit Password" id="myInput"><i id="icon" class="fa" onclick="showPassword()">&#xf070;</i>
+        
 <legend><span class="number">2</span> Agent Information </legend>
 <label>User Agent</label>
 <input type="text" name="userAgent" required placeholder="User Agent">
@@ -429,8 +441,18 @@ a:hover {
     </form>
 <code>
     <pre id="codeBlock"></pre>
-</code></div>
-
+</code>
+</div>
+    <script>
+function showPassword() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
 <script>
     const form = document.getElementById("botForm");
     const submitBtn = document.getElementById("submitBtn");
@@ -552,3 +574,4 @@ if (event.target == modal) {
 </script>
 </body>
 </html>
+
