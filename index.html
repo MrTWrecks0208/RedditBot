@@ -1,26 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Reddit Bot Generator</title>
-        <link rel="stylesheet" href="./style.css">
-        <link rel="stylesheet" href="https://codepen.io/gymratpacks/pen/VKzBEp#0">
-        <link href='https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700;800;900' rel='stylesheet' type='text/css'>
-    </head>
-    <body>
-      <div id="modal-div">
-      <button id="myBtn">Instructions</button>
-      <!-- The Modal -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddit Bot Config</title>
+    <script src="https://kit.fontawesome.com/1ad022fbba.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      background: #f7f7f7;
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    label {
+      font-weight: 500;
+      display: block;
+      margin-top: 12px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    pre {
+      background: #111;
+      color: #0f0;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 13px;
+      display: none;
+    }
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+form {
+  max-width: 300px;
+  margin: 50px auto;
+  padding: 10px 20px;
+  background: #f4f7f8;
+  border-radius: 8px;
+}
+
+h1 {
+  margin: 20px 0 30px 0;
+  text-align: center;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  font-size: 16px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 12px;
+  width: 100%;
+  background-color: #e8eeef;
+  color: #000;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  margin-bottom: 30px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 0 4px 8px 0;
+}
+
+#content {
+  width: 100%;
+  margin: 0 0 10px;
+  height: 120px;
+  padding-top: 5px;
+}
+
+p#note {
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 1;
+  color: #333;
+  margin-top: -10px;
+  margin-bottom: 30px;
+}
+
+select {
+  padding: 6px;
+  height: 42px;
+  border-radius: 2px;
+}
+
+button {
+  color: #FFF;
+  background-color: orangered;
+  text-align: center;
+  letter-spacing: .5px;
+  border-radius: 50px;
+  border: 2px solid orangered;
+  text-transform: capitalize;
+  transition: .2s ease;
+}
+
+button:hover {
+  background: white;
+  color: orangered;
+  border: 2px solid orangered;
+  box-shadow: 2px 4px 12px 10px rgba(255, 69, 0,.25);
+}
+
+button:active {
+   transform: scale(.8);
+}
+
+fieldset {
+  margin-bottom: 30px;
+  border: none;
+}
+
+legend {
+  font-size: 20px;
+  font-weight: 600500;
+  margin: 20px auto 30px;
+  color: orangered;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+label.light {
+  font-weight: 300;
+  display: inline;
+}
+
+#icon {
+  position: absolute;
+  margin-left: -30px;
+  margin-top: 13px;
+  font-size: 20px;
+}
+
+.number {
+  background-color: orangered;
+  color: #fff;
+  height: 28px;
+  width: 28px;
+  display: inline-block;
+  font-size: 0.75em;
+  font-weight: 600;
+  margin-right: 4px;
+  line-height: 28px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+  border-radius: 100%;
+}
+
+@media screen and (min-width: 480px) {
+
+  form {
+    max-width: 480px;
+  }
+
+}
+
+h2 {
+  text-indent: 8px;
+}
+
+h2,h3 {
+  margin: 0;
+  padding: 5px 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+    .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-ctr {
+    display: block;
+    position: relative;
+    margin: 60px auto 30px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 36px;
+  font-weight: 700;
+  padding-right: 10px;
+  margin-top: -6px;
+  transition: .2s ease-out;
+}
+
+.close:hover,
+.close:focus {
+  text-decoration: none;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.modal-header {
+  padding: 3px;
+  background-color: orangered;
+  color: white;
+}
+
+.modal-body {padding: 2px 8px;}
+
+.modal-footer {
+  padding: 2px;
+  background-color: orangered;
+  color: white;
+}
+
+#modal-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+#modalBtn {
+  display: inline-block;
+  width: 140px;
+  border-radius: 50px;
+  padding: 10px 20px;
+  color: orangered;
+  background: white;
+  border: 2px solid orangered;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}
+
+#modalBtn:hover {
+  background: orangered;
+  color: #fff;
+  letter-spacing: .5px;
+  box-shadow: 2px 2px 18px 10px rgba(0, 0, 0, .2);
+  transform: rotate(360deg);
+}
+
+.small {
+  font-size: 10px;
+  font-weight: 300;
+  color: #333;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-color: orangered;
+  text-decoration-thickness: 1.5px;
+  text-decoration-line: solid;
+  color: orangered;
+  
+}
+
+#submitBtn {
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px auto;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#copyBtn {
+    width: 40px;
+    height: 40px;
+    display: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 10px;
+    margin-top: 10px;
+    color: #666;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.subtext {
+    font-size: 10px;
+    font-weight: 300;
+}
+ </style>
+</head>
+<body>
+    <div class="modal-ctr">
+
+    <button id="modalBtn">Instructions</button></div>
+        <div id="modal-div"></div><!-- The Modal -->
 <div id="myModal" class="modal">
-  <!-- Modal content -->
-  <div class="modal-content">
+<!-- Modal content -->
+<div class="modal-content">
     <div class="modal-header">
-      <span class="close">&times;</span>
-      <h2>How to Create an App in Reddit</h2>
+<span class="close">&times;</span>
+<h2>How to Create an App in Reddit</h2>
     </div>
     <div class="modal-body">
-      <ol>
+<ol>
         <li>Go to <a href="https://devvit.com" target="_blank">https://devvit.com</a></li>
         <li>Log in or Sign Up if you don't have an account</li>
         <li>Go to <a href="https://reddit.com/prefs/apps" target="_blank">https://reddit.com/prefs/apps</a></li>
@@ -32,70 +389,138 @@
         <li>Check the box for 'I'm not a robot'</li>
         <li>Get the Client ID which is underneath the app name in the upper left-hand corner labeled 'personal use script'</li>
         <li>Get the secret from the form (first field on left)</li>
-      </ol>
+</ol>
     </div>
     <div class="modal-footer">
-      <h2>&nbsp;</h2>
+<h2>&nbsp;</h2>
     </div>
-  </div>
-
 </div>
-      </div>
-      
-      <div class="row">
-    <div class="col-md-12">
-      <form action="index.html" method="post">
-        <h1> Reddit Bot Generator </h1>
-        
-        <fieldset>
-          
-          <legend><span class="number">1</span> User Credentials</legend>
-        
-                    <input type="text" id="userName" name="userName" placeholder="Username">
-       
-                  <input type="password" id="password" name="password" placeholder="Password"><i id="icon" class="fa" onclick="viewPassword()">&#xf070;</i>
-        
-        
-        </fieldset>
-        <fieldset>  
-        
-          <legend><span class="number">2</span> Agent Information </legend>
-          
- 
-          <input type="text" id="userAgent" name="userAgent" placeholder="User Agent">
-                    <input type="text" id="clientId" name="clientId" placeholder="Client ID">
-          
-          <input type="text" id="secret" name="secret" placeholder="Secret">
+</div>
+</div>
+<div class="container">
+    <h1>Reddit Bot<br>Code Generator</h1>
+    <form id="botForm">
+<legend><span class="number">1</span> User Credentials</legend>
+<label>Username</label>
+<input type="text" name="username" required placeholder="Reddit Username">
 
-          <input type="text" id="subreddits" name="subreddits" placeholder="funny,pics,news">
-        
-          <textarea id="content" name="content" placeholder="Enter text to post"></textarea>
-          <p id="note"><em>Enter text exactly as you'd like it to appear in the comment</em></p>
-          
-           <input type="text" id="keywords" name="keywords" placeholder="Enter Keywords for Search">       
-         </fieldset>
-       
-        <button type="submit">Create Bot</button>
-        
-       </form>
-        </div>
-      </div>
+<label>Password</label>
+<input type="password" name="password" required placeholder="Reddit Password">
+<legend><span class="number">2</span> Agent Information </legend>
+<label>User Agent</label>
+<input type="text" name="userAgent" required placeholder="User Agent">
 
+<label>Client ID</label>
+<input type="text" name="clientId" required placeholder="Client ID">
 
-      <script>
-    const form = document.querySelector('form');
+<label>Secret</label>
+<input type="text" name="secret" required placeholder="Secret">
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-    const data = new FormData(form);
-    const obj = Object.fromEntries(data);
-        console.log(obj);
+<label>Subreddits <span class="subtext">(comma separated)</span></label>
+<input type="text" name="subreddits" required placeholder="news,pics,funny">
 
-    const json = JSON.stringify(obj);
-    localStorage.setItem('form', json);
+<label>Keywords <span class="subtext">(comma separated)</span></label>
+<input type="text" name="keywords" required placeholder="keyword1,keyword2">
 
-    window.location.href = "./confirm.html"
-})
+<label>Content</label>
+<textarea name="content" rows="4" required placeholder="Enter text exactly as you want it to appear on-screen"></textarea>
+
+<button type="button" id="submitBtn">Submit</button>
+    </form>
+<code>
+    <pre id="codeBlock"></pre>
+</code></div>
+
+<script>
+    const form = document.getElementById("botForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const codeBlock = document.getElementById("codeBlock");
+
+    let step = 1;
+
+submitBtn.addEventListener("click", () => {
+    if (step === 1) {
+        submitBtn.textContent = "Confirm Values";
+        step = 2;
+    } else {
+        const formData = Object.fromEntries(new FormData(form).entries());
+        document.getElementById("submitBtn").style.display = "none";
+
+        // Save to localStorage
+        localStorage.setItem("redditBotConfig", JSON.stringify(formData));
+
+        // Process subreddits & keywords
+        const subs = formData.subreddits.split(",").map(s => s.trim()).filter(Boolean);
+        const keywords = formData.keywords.split(",").map(k => `'${k.trim()}'`).filter(Boolean);
+
+        // Build template
+        const template = `
+userAgent = '${formData.userAgent}'
+clientId = '${formData.clientId}'
+secret = '${formData.secret}'
+username = '${formData.username}'
+password = '${formData.password}'
+
+reddit = praw.Reddit(
+    user_agent=userAgent,
+    client_id=clientId,
+    client_secret=secret,
+    username=username,
+    password=password,
+)
+
+subreddits = ["${subs.join('", "')}"]
+
+content = """${formData.content}"""
+
+keywords = {${keywords.join(", ")}}
+
+resultsCount = 0
+
+for sub in subreddits:
+    subreddit = reddit.subreddit(sub)
+    # Check posts
+    for submission in subreddit.hot(limit=20):
+        text = (submission.title + " " + submission.selftext).lower()
+        if any(keyword.lower() in text for keyword in keywords):
+            if submission.author and submission.author.name.lower() == username.lower():
+                continue
+            print("Bot replying to post: ")
+            print("Title: ", submission.title)
+            print("Text: ", submission.selftext)
+            print("----------------------------")
+            print(content, "This was generated by a bot!")
+            print()
+            try:
+                submission.reply(content)
+                resultsCount += 1
+                sleep(60)
+            except Exception as e:
+                print("Error replying to post: ", e)
+        # Check comments
+        submission.comments.replace_more(limit=0)
+        for comment in submission.comments.list():
+            if any(keyword.lower() in comment.body.lower() for keyword in keywords):
+                print("Bot replying to comment: ")
+                print("Comment: ", comment.body)
+                print("----------------------------")
+                try:
+                    comment.reply(content)
+                    resultsCount += 1
+                    sleep(120)
+                except Exception as e:
+                    print("Error replying to comment: ", e)
+
+if resultsCount == 0:
+    print()
+    print("Sorry. I didn't find any posts or comments with those keywords.")
+        `;
+
+        // Show code
+        codeBlock.style.display = "block";
+        codeBlock.textContent = template;
+}
+    });
 </script>
 
 <script>
@@ -103,29 +528,27 @@
 var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+var btn = document.getElementById("modalBtn");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
-  modal.style.display = "block";
+modal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-  modal.style.display = "none";
+modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-  if (event.target == modal) {
+if (event.target == modal) {
     modal.style.display = "none";
-  }
+}
 }
 </script>
-
-    </body>
+</body>
 </html>
-
