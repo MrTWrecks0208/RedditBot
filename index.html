@@ -9,50 +9,50 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700;800;900' 
     <script src="./src/script.js">
 <style>
-      body {
-      background: #2d383a;
-      padding: 20px;
-      font-family: 'Poppins', sans-serif;
-      color: #333;
-    }
+body {
+  background: #2d383a;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
 
 html {
   background: #2d383a;
 }
+.container {
+  max-width: 700px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
 
-    .container {
-      max-width: 700px;
-      margin: 50px auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
+label {
+  font-weight: 500;
+  display: block;
+  margin-top: 12px;
+}
+    
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
 
-    label {
-      font-weight: 500;
-      display: block;
-      margin-top: 12px;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 8px;
-      margin-top: 4px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 14px;
-    }
-
-    pre {
-      background: #111;
-      color: #0f0;
-      padding: 15px;
-      margin-top: 20px;
-      border-radius: 8px;
-      overflow-x: auto;
-      font-size: 13px;
-      display: none;
-    }
+pre {
+  background: #111;
+  color: #0f0;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 13px;
+  display: none;
+}
 
 *, *:before, *:after {
   -moz-box-sizing: border-box;
@@ -386,9 +386,16 @@ a:hover {
     font-size: 10px;
     font-weight: 300;
 }
+
+#heading-ctr {
+    display: block;
+    position: relative;
+    margin: 50px auto;
+}
 </style>
 </head>
 <body>
+     <div id="heading-ctr"><h1>Reddit Bot Generator</h1></div>
     <div class="modal-ctr">
     <button id="modalBtn">Instructions</button></div>
         <div id="modal-div"></div><!-- The Modal -->
@@ -421,35 +428,33 @@ a:hover {
 </div>
 </div>
 <div class="container">
-    <h1>Reddit Bot Generator</h1>
     <form id="botForm">
 <legend><span class="number">1</span> User Credentials</legend>
-<label>Username</label>
+        
 <input type="text" name="username" required placeholder="Reddit Username">
 
-<label>Password</label>
 <input type="password" name="password" required placeholder="Reddit Password" id="myInput"><i id="icon" class="fa" onclick="showPassword()">&#xf070;</i>
         
 <legend><span class="number">2</span> Agent Information </legend>
-<label>User Agent</label>
+
 <input type="text" name="userAgent" required placeholder="User Agent">
 
-<label>Client ID</label>
+
 <input type="text" name="clientId" required placeholder="Client ID">
 
-<label>Secret</label>
+
 <input type="text" name="secret" required placeholder="Secret">
 
-<label>Subreddits <span class="subtext">(comma separated)</span></label>
+
 <input type="text" name="subreddits" required placeholder="news,pics,funny">
+<span class="subtext">(comma separated)</span>
 
-<label>Keywords <span class="subtext">(comma separated)</span></label>
 <input type="text" name="keywords" required placeholder="keyword1,keyword2">
-
-<label>Content</label>
+<span class="subtext">(comma separated)</span>
+        
 <textarea name="content" rows="4" required placeholder="Enter text exactly as you want it to appear on-screen"></textarea>
 
-<button type="button" id="submitBtn">Submit</button>
+<button type="button" id="submitBtn">Create Bot</button>
     </form>
 <code>
     <pre id="codeBlock"></pre>
