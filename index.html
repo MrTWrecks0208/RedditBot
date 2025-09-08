@@ -440,16 +440,12 @@ a:hover {
 
 <input type="text" name="userAgent" required placeholder="User Agent">
 
-
 <input type="text" name="clientId" required placeholder="Client ID">
-
 
 <input type="text" name="secret" required placeholder="Secret">
 
-<span class="subtext">(comma separated)</span>
 <input type="text" name="subreddits" required placeholder="news,pics,funny">
 
-<span class="subtext">(comma separated)</span>
 <input type="text" name="keywords" required placeholder="keyword1,keyword2">
 
         
@@ -473,6 +469,7 @@ function showPassword() {
 </script>
    
 <script>
+    
     const form = document.getElementById("botForm");
     const submitBtn = document.getElementById("submitBtn");
     const codeBlock = document.getElementById("codeBlock");
@@ -494,7 +491,9 @@ submitBtn.addEventListener("click", () => {
         const subs = formData.subreddits.split(",").map(s => s.trim()).filter(Boolean);
         const keywords = formData.keywords.split(",").map(k => `'${k.trim()}'`).filter(Boolean);
 
-        // Build template
+         // Build template
+import praw
+       
         const template = `
 userAgent = '${formData.userAgent}'
 clientId = '${formData.clientId}'
