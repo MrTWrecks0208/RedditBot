@@ -61,6 +61,8 @@ form {
 h1 {
   margin: 20px 0 30px 0;
   text-align: center;
+  color: orangered;
+  font-weight: 700;
 }
 
 input[type="text"],
@@ -186,7 +188,7 @@ transform: scale(.85);
   font-size: 0.75em;
   font-weight: 600;
   margin-right: 4px;
-  line-height: 28px;
+  line-height: 30px;
   text-align: center;
   text-shadow: 0 1px 0 rgba(255,255,255,0.2);
   border-radius: 100%;
