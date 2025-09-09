@@ -8,6 +8,7 @@
     <link ref="stylesheet" href="./src/style.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700;800;900'> 
     <script src="./src/script.js"></script>
+    
 <style>
 
   body {
@@ -65,18 +66,18 @@ pre {
 
 form {
   max-width: 300px;
-  margin: 50px auto;
-  padding: 10px 20px;
+  margin: 20px auto;
+  padding: 20px;
   background: #f4f7f8;
-  border-radius: 8px;
+  border-radius: 16px;
 }
 
 h1 {
-  margin: 20px 0 30px 0;
+  margin: 20px 0;
   text-align: center;
   color: orangered;
   font-weight: 600;
-  font-size: 2em;
+  font-size: 3.2rem;
 }
 
 input[type="text"],
@@ -316,23 +317,27 @@ h2,h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  
 }
 
-#modalBtn {
+#modal-btn {
   display: inline-block;
-  width: 140px;
-  border-radius: 50px;
+  width: 25vw;
+  height: 50px;
+  border-radius: 5px;
   padding: 10px 20px;
   color: orangered;
   background: white;
-  border: 2px solid orangered;
-  font-size: 16px;
-  font-weight: 500;
+  border: 3px solid orangered;
+  font-size: 1.2rem;
+  font-weight: 600;
   text-align: center;
+  margin: 0 auto;
+letter-spacing: 1px;
+  cursor: pointer;
+  transition: .2s ease;
 }
 
-#modalBtn:hover {
+#modal-btn:hover {
   background: orangered;
   color: #fff;
   letter-spacing: .5px;
@@ -394,12 +399,24 @@ a:hover {
     position: relative;
     margin: 50px auto;
 }
+
+code {
+  background: #282b2e;
+  color: #fff;
+  padding: 20px;
+  white-space: normal;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  text-indent: 10px;
+  line-height: 1.6;
+}
+
 </style>
 </head>
 <body>
      <div id="heading-ctr"><h1>Reddit Bot Generator</h1></div>
     <div class="modal-ctr">
-    <button id="modalBtn">Instructions</button></div>
+    <button id="modal-btn">Instructions</button></div>
         <div id="modal-div"></div><!-- The Modal -->
 <div id="myModal" class="modal">
 <!-- Modal content -->
@@ -569,7 +586,7 @@ if resultsCount == 0:
 var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-var btn = document.getElementById("modalBtn");
+var btn = document.getElementById("modal-btn");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
