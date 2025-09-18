@@ -1,517 +1,617 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reddit Bot Generator</title>
-    <script src="https://kit.fontawesome.com/1ad022fbba.js" crossorigin="anonymous"></script>
-    <link ref="stylesheet" href="./src/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700;800;900'> 
-    <script src="./src/script.js"></script>
-    
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reddit Bot Generator</title>
+  <script src="https://kit.fontawesome.com/1ad022fbba.js" crossorigin="anonymous"></script>
+  <link ref="stylesheet" href="./src/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700;800;900'>
+  <script src="./src/script.js"></script>
 
-  body {
-  background: #2d383a;
-  padding: 20px;
-  font-family: 'Poppins', sans-serif;
-  color: #333;
+  <style>
+    body {
+      background: #2d383a;
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+    }
+
+    html {
+      background: #2d383a;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
+      background: transparent;
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    label {
+      font-weight: 500;
+      display: block;
+      margin-top: 12px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    pre {
+      background: #111;
+      color: #0f0;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 13px;
+      display: none;
+    }
+
+    *,
+    *:before,
+    *:after {
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    form {
+      max-width: 300px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #f4f7f8;
+      border-radius: 16px;
+      box-shadow: 0 0 16px 20px rgba(50, 50, 50, 0.25)
+    }
+
+    h1 {
+      margin: 20px 0;
+      text-align: center;
+      color: orangered;
+      font-weight: 600;
+      font-size: 3.2rem;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="date"],
+    input[type="datetime"],
+    input[type="email"],
+    input[type="number"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="time"],
+    input[type="url"],
+    textarea,
+    select {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      font-size: 16px;
+      height: auto;
+      margin: 0;
+      outline: 0;
+      padding: 12px;
+      width: 100%;
+      background-color: #e8eeef;
+      color: #000;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+      margin-bottom: 30px;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin: 0 4px 8px 0;
+    }
+
+    #content {
+      width: 100%;
+      margin: 0 0 10px;
+      height: 120px;
+      padding-top: 5px;
+    }
+
+    p#note {
+      font-size: 10px;
+      font-weight: 300;
+      line-height: 1;
+      color: #333;
+      margin-top: -10px;
+      margin-bottom: 30px;
+    }
+
+    select {
+      padding: 6px;
+      height: 42px;
+      border-radius: 2px;
+    }
+
+    button {
+      color: #FFF;
+      background-color: orangered;
+      text-align: center;
+      letter-spacing: .5px;
+      border-radius: 50px;
+      border: 2px solid orangered;
+      text-transform: capitalize;
+      transition: .2s ease;
+    }
+
+    button:hover {
+      background: white;
+      color: orangered;
+      border: 2px solid orangered;
+      box-shadow: 2px 4px 12px 10px rgba(255, 69, 0, .25);
+    }
+
+    button:active {
+      transform: scale(.8);
+    }
+
+    fieldset {
+      margin-bottom: 30px;
+      border: none;
+    }
+
+    legend {
+      font-size: 20px;
+      font-weight: 600500;
+      margin: 20px auto 30px;
+      color: orangered;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    label.light {
+      font-weight: 300;
+      display: inline;
+    }
+
+    #icon {
+      position: absolute;
+      margin-left: -33px;
+      margin-top: 8px;
+      font-size: 21px;
+      cursor: pointer;
+    }
+
+    #icon:hover {
+      color: orangered;
+      filter: brightness(1.2);
+    }
+
+    #icon:active {
+      filter: brightness(0.8);
+      transform: scale(.85);
+    }
+
+    .number {
+      background-color: orangered;
+      color: #fff;
+      height: 28px;
+      width: 28px;
+      display: inline-block;
+      font-size: 0.75em;
+      font-weight: 600;
+      margin-right: 4px;
+      line-height: 30px;
+      text-align: center;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+      border-radius: 100%;
+    }
+
+    @media screen and (min-width: 480px) {
+
+      form {
+        max-width: 480px;
+      }
+
+    }
+
+    h2 {
+      text-indent: 8px;
+    }
+
+    h2,
+    h3 {
+      margin: 0;
+      padding: 5px 0;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .modal, .modal2 {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-ctr, .modal2-ctr {
+      display: block;
+      position: relative;
+      margin: 60px auto 30px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Modal Content */
+    .modal-content, .modal2-content {
+      position: relative;
+      background-color: #fefefe;
+      margin: auto;
+      padding: 0;
+      border: 1px solid #888;
+      width: 80%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      -webkit-animation-name: animatetop;
+      -webkit-animation-duration: 0.4s;
+      animation-name: animatetop;
+      animation-duration: 0.4s
+    }
+
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+      from {
+        top: -300px;
+        opacity: 0
+      }
+
+      to {
+        top: 0;
+        opacity: 1
+      }
+    }
+
+    @keyframes animatetop {
+      from {
+        top: -300px;
+        opacity: 0
+      }
+
+      to {
+        top: 0;
+        opacity: 1
+      }
+    }
+
+    /* The Close Button */
+    .close, .close2 {
+      color: white;
+      float: right;
+      font-size: 36px;
+      font-weight: 700;
+      padding-right: 10px;
+      margin-top: -6px;
+      transition: .2s ease-out;
+    }
+
+    .close:hover,
+    .close:focus {
+      text-decoration: none;
+      cursor: pointer;
+      transform: scale(1.2);
+    }
+
+    .close2:hover, .close2:focus {
+      text-decoration: none;
+      cursor: pointer;
+      transform: scale(1.2);
+    }
+
+    .close:active, .close2:active {
+      transform: scale(.8);
+      text-shadow: 2px 2px rgba(0, 0, 0, 1);
+    }
+
+    .modal-header, .modal2-header {
+      padding: 3px;
+      background-color: orangered;
+      color: white;
+    }
+
+    .modal-body, .modal2-body {
+      padding: 2px 20px;
+      text-indent: -17px;
+      margin-left: 17px;
+    }
+
+    .modal-footer, .modal2-footer {
+      padding: 2px;
+      background-color: orangered;
+      color: white;
+    }
+
+    #modal-div, #modal2-div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #modal-btn, #modal2-btn {
+      display: inline-block;
+      width: 25vw;
+      height: 50px;
+      border-radius: 5px;
+      padding: 10px 20px;
+      color: orangered;
+      background: white;
+      border: 3px solid orangered;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: center;
+      margin: 0 auto;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    #modal-btn:hover, #modal2-btn:hover {
+      background: orangered;
+      color: #fff;
+      letter-spacing: .5px;
+      box-shadow: 2px 2px 18px 10px rgba(0, 0, 0, .2);
+    }
+
+    ol {
+  padding-inline-start: 0;
+  margin-block-end: 1em;
+  counter-reset: section;
 }
 
-html {
-  background: #2d383a;
-}
-    
-.container {
-  max-width: 700px;
-  margin: 50px auto;
-  background: transparent;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-label {
-  font-weight: 500;
+ol li {
   display: block;
-  margin-top: 12px;
-}
-    
-input, textarea {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
 }
 
-pre {
-  background: #111;
-  color: #0f0;
-  padding: 15px;
-  margin-top: 20px;
-  border-radius: 8px;
-  overflow-x: auto;
-  font-size: 13px;
-  display: none;
+ol > li {
+  counter-increment: section;
 }
 
-*, *:before, *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+ol > li::before {
+  content: counter(section) ". ";
+  font-weight: bold;
 }
 
-form {
-  max-width: 300px;
-  margin: 20px auto;
-  padding: 20px;
-  background: #f4f7f8;
-  border-radius: 16px;
+ol > li > ol {
+  counter-reset: subsection;
 }
 
-h1 {
-  margin: 20px 0;
-  text-align: center;
-  color: orangered;
-  font-weight: 600;
-  font-size: 3.2rem;
+ol > li > ol > li {
+  counter-increment: subsection;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="date"],
-input[type="datetime"],
-input[type="email"],
-input[type="number"],
-input[type="search"],
-input[type="tel"],
-input[type="time"],
-input[type="url"],
-textarea,
-select {
-  background: rgba(255,255,255,0.1);
-  border: none;
-  font-size: 16px;
-  height: auto;
-  margin: 0;
-  outline: 0;
-  padding: 12px;
-  width: 100%;
-  background-color: #e8eeef;
-  color: #000;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-  margin-bottom: 30px;
+ol > li > ol > li::before {
+  content: counter(section) "." counter(subsection) " ";
+  margin-inline-end: 0.2em;
 }
 
-input[type="radio"],
-input[type="checkbox"] {
-  margin: 0 4px 8px 0;
+ol > li > ol > li > ol {
+  counter-reset: subsubsection;
 }
 
-#content {
-  width: 100%;
-  margin: 0 0 10px;
-  height: 120px;
-  padding-top: 5px;
+ol > li > ol > li > ol > li {
+  counter-increment: subsubsection;
 }
 
-p#note {
-  font-size: 10px;
-  font-weight: 300;
-  line-height: 1;
-  color: #333;
-  margin-top: -10px;
-  margin-bottom: 30px;
+ol > li > ol > li > ol > li::before {
+  content: counter(section) "." counter(subsection) "." counter(subsubsection) " ";
 }
 
-select {
-  padding: 6px;
-  height: 42px;
-  border-radius: 2px;
+ol ol {
+  margin-block-end: 0;
+  padding-inline-start: 1.5em;
 }
 
-button {
-  color: #FFF;
-  background-color: orangered;
-  text-align: center;
-  letter-spacing: .5px;
-  border-radius: 50px;
-  border: 2px solid orangered;
-  text-transform: capitalize;
-  transition: .2s ease;
-}
+    .small {
+      font-size: 10px;
+      font-weight: 300;
+      color: #333;
+    }
 
-button:hover {
-  background: white;
-  color: orangered;
-  border: 2px solid orangered;
-  box-shadow: 2px 4px 12px 10px rgba(255, 69, 0,.25);
-}
+    a {
+      color: #000;
+      text-decoration: none;
+    }
 
-button:active {
-   transform: scale(.8);
-}
+    a:hover {
+      text-decoration: underline;
+      text-decoration-color: orangered;
+      text-decoration-thickness: 1.5px;
+      text-decoration-line: solid;
+      color: orangered;
+    }
 
-fieldset {
-  margin-bottom: 30px;
-  border: none;
-}
+    #submitBtn {
+      width: 100%;
+      border-radius: 5px;
+      padding: 10px 20px;
+      margin: 10px auto;
+      font-size: 16px;
+      font-weight: 600;
+    }
 
-legend {
-  font-size: 20px;
-  font-weight: 600500;
-  margin: 20px auto 30px;
-  color: orangered;
-}
+    #copyBtn {
+      width: 40px;
+      height: 40px;
+      display: absolute;
+      top: 0;
+      right: 0;
+      margin-right: 10px;
+      margin-top: 10px;
+      color: #666;
+      background: transparent;
+      border: none;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+    }
 
-label {
-  display: block;
-  margin-bottom: 8px;
-}
+    .subtext {
+      font-size: 10px;
+      font-weight: 300;
+    }
 
-label.light {
-  font-weight: 300;
-  display: inline;
-}
-
-#icon {
-  position: absolute;
-  margin-left: -30px;
-  margin-top: 13px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-#icon:hover {
-color: orangered;
-}
-
-#icon:active {
-filter: brightness(.8);
-transform: scale(.85);
-}
-      
-.number {
-  background-color: orangered;
-  color: #fff;
-  height: 28px;
-  width: 28px;
-  display: inline-block;
-  font-size: 0.75em;
-  font-weight: 600;
-  margin-right: 4px;
-  line-height: 30px;
-  text-align: center;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-  border-radius: 100%;
-}
-
-@media screen and (min-width: 480px) {
-
-  form {
-    max-width: 480px;
-  }
-
-}
-
-h2 {
-  text-indent: 8px;
-}
-
-h2,h3 {
-  margin: 0;
-  padding: 5px 0;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-.modal-ctr {
-    display: block;
-    position: relative;
-    margin: 60px auto 30px;
-    width: 100%;
-    text-align: center;
-}
-
-/* Modal Content */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
-}
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-
-/* The Close Button */
-.close {
-  color: white;
-  float: right;
-  font-size: 36px;
-  font-weight: 700;
-  padding-right: 10px;
-  margin-top: -6px;
-  transition: .2s ease-out;
-}
-
-.close:hover,
-.close:focus {
-  text-decoration: none;
-  cursor: pointer;
-  transform: scale(1.2);
-}
-
-.close:active {
-    transform: scale(.8);
-    text-shadow: 2px 2px rgba(0,0,0,1);
-}
-
-.modal-header {
-  padding: 3px;
-  background-color: orangered;
-  color: white;
-}
-
-.modal-body {padding: 2px 8px;}
-
-.modal-footer {
-  padding: 2px;
-  background-color: orangered;
-  color: white;
-}
-
-#modal-div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#modal-btn {
-  display: inline-block;
-  width: 25vw;
-  height: 50px;
-  border-radius: 5px;
-  padding: 10px 20px;
-  color: orangered;
-  background: white;
-  border: 3px solid orangered;
-  font-size: 1.2rem;
-  font-weight: 600;
-  text-align: center;
-  margin: 0 auto;
-letter-spacing: 1px;
-  cursor: pointer;
-  transition: .2s ease;
-}
-
-#modal-btn:hover {
-  background: orangered;
-  color: #fff;
-  letter-spacing: .5px;
-  box-shadow: 2px 2px 18px 10px rgba(0, 0, 0, .2);
-}
-
-.small {
-  font-size: 10px;
-  font-weight: 300;
-  color: #333;
-}
-
-a {
-  color: #000;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-  text-decoration-color: orangered;
-  text-decoration-thickness: 1.5px;
-  text-decoration-line: solid;
-  color: orangered;
-  
-}
-
-#submitBtn {
-    width: 100%;
-    border-radius: 5px;
-    padding: 10px 20px;
-    margin: 10px auto;
-    font-size: 16px;
-    font-weight: 600;
-}
-
-#copyBtn {
-    width: 40px;
-    height: 40px;
-    display: absolute;
-    top: 0;
-    right: 0;
-    margin-right: 10px;
-    margin-top: 10px;
-    color: #666;
-    background: transparent;
-    border: none;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.subtext {
-    font-size: 10px;
-    font-weight: 300;
-}
-
-#heading-ctr {
-    display: block;
-    position: relative;
-    margin: 50px auto;
-}
-
-code {
-  background: #282b2e;
-  color: #fff;
-  padding: 20px;
-  white-space: normal;
-  word-break: break-all;
-  overflow-wrap: anywhere;
-  text-indent: 10px;
-  line-height: 1.6;
-}
-
-</style>
+    #heading-ctr {
+      display: block;
+      position: relative;
+      margin: 50px auto;
+    }
+  </style>
 </head>
+
 <body>
-     <div id="heading-ctr"><h1>Reddit Bot Generator</h1></div>
-    <div class="modal-ctr">
-    <button id="modal-btn">Instructions</button></div>
-        <div id="modal-div"></div><!-- The Modal -->
-<div id="myModal" class="modal">
-<!-- Modal content -->
-<div class="modal-content">
-    <div class="modal-header">
-<span class="close">&times;</span>
-<h2>How to Create an App in Reddit</h2>
+  <div id="heading-ctr">
+    <h1>Reddit Bot Generator</h1>
+  </div>
+  <div class="modal-ctr">
+    <button id="modal-btn">Instructions</button>
+  </div>
+  <div id="modal-div"></div><!-- The Modal -->
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>How to Create an App in Reddit</h2>
+      </div>
+      <div class="modal-body">
+        <ol>
+          <li>Go to <a href="https://devvit.com" target="_blank">https://devvit.com</a></li>
+          <li>Log in or Sign Up if you don't have an account</li>
+          <li>Go to <a href="https://reddit.com/prefs/apps" target="_blank">https://reddit.com/prefs/apps</a></li>
+          <li>Click 'Create another app'</li>
+          <li>Enter app name</li>
+          <li>Select 'Script'</li>
+          <li>Enter description</li>
+          <li>For 'redirect uri', enter 'https://localhost:8080'</li>
+          <li>Check the box for 'I'm not a robot'</li>
+          <li>Get the Client ID which is underneath the app name in the upper left-hand corner labeled 'personal use
+            script'</li>
+          <li>Get the secret from the form (first field on left)</li>
+        </ol>
+      </div>
+      <div class="modal-footer">
+        <h2>&nbsp;</h2>
+      </div>
     </div>
-    <div class="modal-body">
-<ol>
-        <li>Go to <a href="https://devvit.com" target="_blank">https://devvit.com</a></li>
-        <li>Log in or Sign Up if you don't have an account</li>
-        <li>Go to <a href="https://reddit.com/prefs/apps" target="_blank">https://reddit.com/prefs/apps</a></li>
-        <li>Click 'Create another app'</li>
-        <li>Enter app name</li>
-        <li>Select 'Script'</li>
-        <li>Enter description</li>
-        <li>For 'redirect uri', enter 'https://localhost:8080'</li>
-        <li>Check the box for 'I'm not a robot'</li>
-        <li>Get the Client ID which is underneath the app name in the upper left-hand corner labeled 'personal use script'</li>
-        <li>Get the secret from the form (first field on left)</li>
-</ol>
-    </div>
-    <div class="modal-footer">
-<h2>&nbsp;</h2>
-    </div>
-</div>
-</div>
-</div>
-<div class="container">
+  </div>
+  </div>
+  <div class="container">
     <form id="botForm">
-<legend><span class="number">1</span> User Credentials</legend>
-        
-<input type="text" name="username" required placeholder="Reddit Username">
-
-<input type="password" name="password" required placeholder="Reddit Password" id="myInput"><i id="icon" class="fa" onclick="showPassword()">&#xf070;</i>
-        
-<legend><span class="number">2</span> Agent Information </legend>
-
-<input type="text" name="userAgent" required placeholder="User Agent">
-
-<input type="text" name="clientId" required placeholder="Client ID">
-
-<input type="text" name="secret" required placeholder="Secret">
-
-<input type="text" name="subreddits" required placeholder="news,pics,funny">
-
-<input type="text" name="keywords" required placeholder="keyword1,keyword2">
-
-        
-<textarea name="content" rows="4" required placeholder="Enter text exactly as you want it to appear on-screen"></textarea>
-
-<button type="button" id="submitBtn">Create Bot</button>
+      <legend><span class="number">1</span> User Credentials</legend>
+      <input type="text" name="username" required placeholder="Reddit Username">
+      <input type="password" name="password" required placeholder="Reddit Password" id="myInput"><i id="icon" class="fa"
+        onclick="showPassword()">&#x1f441;</i>
+      <legend><span class="number">2</span> Agent Information
+      </legend>
+      <input type="text" name="userAgent" required placeholder="User Agent">
+      <input type="text" name="clientId" required placeholder="Client ID">
+      <input type="text" name="secret" required placeholder="Secret">
+      <input type="text" name="subreddits" required placeholder="news,pics,funny">
+      <input type="text" name="keywords" required placeholder="keyword1,keyword2">
+      <textarea name="content" rows="4" required
+        placeholder="Enter text exactly as you want it to appear on-screen including line breaks."></textarea>
+      <button type="button" id="submitBtn">Create Bot</button>
     </form>
-<code>
-    <pre id="codeBlock"></pre>
-</code>
+        <pre id="codeBlock"></pre>
+  </div>
+  <div class="modal2-ctr">
+    <button id="modal2-btn">Further Instructions</button>
+  </div>
+  <div id="modal2-div"></div><!-- The Modal -->
+  <div id="myModal2" class="modal2">
+    <!-- Modal content -->
+    <div class="modal2-content">
+      <div class="modal2-header">
+        <span class="close2">&times;</span>
+        <h2>How to Use The Generated Code</h2>
+      </div>
+      <div class="modal2-body">
+        <ol>
+          <li>On your desktop, right-click anywhere on-screen and select 'New' --> 'Folder'. Name should be the same as Reddit app created earlier.</li>
+          <li>Right-click on folder and select, 'Open with Code'</li>
+          <ol>
+            <li>If you don't see that option, 'Open with Code', go to <a href="https://code.visualstudio.com/download" target="_blank"></a> and download the appropriate version for your device.</li>
+            <li>Once downloaded, open File Explorer, navigate to 'Downloads', and double-click the .exe file. The file name should start with 'VSCodeUserSetup' or something similar.</li>
+            <li>Follow the prompts in the installer, and make sure to check the box that says 'Add to PATH' or 'Add to Environment Variables' during installation. This will allow you to open VS Code from the right-click context menu.</li>
+            <li>Once installation is complete, you may need to restart your computer for the changes to take effect.</li>
+            <li>After restarting, right-click on the folder you created earlier and you should now see the 'Open with Code' option. Click 'Open with Code' to open the folder in Visual Studio Code.</li>
+            <li>In VS code, click on 'File' --> 'New File'. Name the file the same as Reddit app and folder name. For file extension, since this will be a Python script, enter '.py' which is the file extension for files written in the Python language.</li>
+          </ol>
+          <li>In VS Code, click on 'Terminal' --> 'New Terminal'</li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ol>
+      </div>
+      <div class="modal2-footer">
+        <h2>&nbsp;</h2>
+      </div>
+    </div>
+  </div>
 </div>
-     <script>
-function showPassword() {
-  var x = document.getElementById("myInput");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
-</script>
-   
-<script>
-    
+  <script>
+    function showPassword() {
+      var x = document.getElementById("myInput");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+  </script>
+
+  <script>
+
     const form = document.getElementById("botForm");
     const submitBtn = document.getElementById("submitBtn");
     const codeBlock = document.getElementById("codeBlock");
 
     let step = 1;
 
-submitBtn.addEventListener("click", () => {
-    if (step === 1) {
-        submitBtn.textContent = "Confirm Values";
+    submitBtn.addEventListener("click", () => {
+      if (step === 1) {
+        submitBtn.innerHTML = "Confirm Values.<br>Click Again to Generate Code";
         step = 2;
-    } else {
+      } else {
         const formData = Object.fromEntries(new FormData(form).entries());
         document.getElementById("submitBtn").style.display = "none";
-
-        // Save to localStorage
         localStorage.setItem("redditBotConfig", JSON.stringify(formData));
 
-        // Process subreddits & keywords
         const subs = formData.subreddits.split(",").map(s => s.trim()).filter(Boolean);
-        const keywords = formData.keywords.split(",").map(k => `'${k.trim()}'`).filter(Boolean);
+        const keywords = formData.keywords.split(",").map(k => `'${k.trim()}'`).filter(Boolean); // Build template
 
-const template = `       // Build template
-'import praw'
-       
+        const template = `
+
+import praw
+import os
+from time import sleep
 
 userAgent = '${formData.userAgent}'
 clientId = '${formData.clientId}'
@@ -577,39 +677,50 @@ if resultsCount == 0:
         // Show code
         codeBlock.style.display = "block";
         codeBlock.textContent = template;
-}
+      }
     });
-</script>
+  </script>
 
-<script>
-// Get the modal
-var modal = document.getElementById("myModal");
+  <script>
 
-// Get the button that opens the modal
-var btn = document.getElementById("modal-btn");
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("modal-btn");
+    var span = document.getElementsByClassName("close")[0];
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+    btn.onclick = function () {
+      modal.style.display = "block";
+    }
 
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-modal.style.display = "block";
-}
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-modal.style.display = "none";
-}
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-if (event.target == modal) {
-    modal.style.display = "none";
-}
-}
-</script>
-            </body>
-            </html>
+  <script>
 
+    var modal2 = document.getElementById("myModal2");
+    var btn2 = document.getElementById("modal2-btn");
+    var span = document.getElementsByClassName("close2")[0];
 
+    btn2.onclick = function () {
+      modal2.style.display = "block";
+    }
 
+    span.onclick = function () {
+      modal2.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+      if (event.target == modal2) {
+        modal2.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
